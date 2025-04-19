@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>У ВЕПРА - Відгуки</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            background-color: #f8f8f8;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        textarea {
+            width: 100%;
+            height: 100px;
+        }
+        .review {
+            border-bottom: 1px solid #ddd;
+            padding: 10px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>У ВЕПРА - Відгуки</h1>
+        
+        <h2>Додайте свій відгук:</h2>
+        <form id="reviewForm">
+            <textarea id="reviewInput" placeholder="Напишіть свій відгук тут..."></textarea><br>
+            <button type="submit">Відправити</button>
+        </form>
+
+        <h2>Відгуки:</h2>
+        <div id="reviews"></div>
+    </div>
+
+    <script>
+        // Функция для загрузки сохранённых отзывов
+        function loadReviews() {
+            let savedReviews = localStorage.getItem("reviews");
+            if (savedReviews) {
+                document.getElementById("reviews").innerHTML = savedReviews;
+            }
+        }
+
+        // Функция для сохранения отзывов
+        function saveReviews() {
+            localStorage.setItem("reviews", document.getElementById("reviews").innerHTML);
+        }
+
+        document.getElementById("reviewForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            let reviewText = document.getElementById("reviewInput").value;
+            if (reviewText.trim() !== "") {
+                let reviewDiv = document.createElement("div");
+                reviewDiv.classList.add("review");
+                reviewDiv.textContent = reviewText;
+                document.getElementById("reviews").prepend(reviewDiv);
+                document.getElementById("reviewInput").value = "";
+                saveReviews(); // Сохраняем отзыв
+            }
+        });
+
+        // Загружаем отзывы при загрузке страницы
+        window.onload = loadReviews;
+    </script>
+
+</body>
+</html>
