@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Відгуки</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Відгуки наших гостей</h1>
+    <p>Тут можна залишити ваш відгук про ресторан.</p>
+    
+    <form action="submit-review.php" method="post">
+        <label for="name">Ім'я:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="review">Ваш відгук:</label>
+        <textarea id="review" name="review" required></textarea>
+
+        <button type="submit">Надіслати</button>
+    </form>
+</body>
+</html>
